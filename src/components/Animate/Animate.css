@@ -1,0 +1,17 @@
+.FadeIn {
+	opacity: 1;
+	transition: opacity 1.5s ease-in;
+}
+
+.FadeOut {
+	opacity: 0;
+	transition: opacity 2s ease-out;
+}
+
+.FadeIn, .FadeOut {
+	height: 100%;
+}
+
+.Resume-Header {
+	height: 10%;
+}
