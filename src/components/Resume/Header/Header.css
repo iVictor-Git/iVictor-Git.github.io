@@ -1,0 +1,14 @@
+.Info {
+	color: white;
+}
+
+.Header {
+	padding-top: 15px;
+	display: flex;
+	height: 12vh;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
+	padding-bottom: 15px;
+	/* border: 1px solid white; */
+}

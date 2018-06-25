@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styles from './Animate.css';
 import { setTimeout } from 'timers';
 
+import { Wait } from '../../helper/helper';
+
 export default class FadeInOut extends Component {
 	constructor() {
 		super();
@@ -10,23 +12,12 @@ export default class FadeInOut extends Component {
 		}
 	}
 
-	Fade = () => {
-		this.setState((state) => ({ show: !state.show }));
-	}
-
-	Wait = (seconds) => {
-		setTimeout(() => {
-			return this.Fade();
-		}, seconds);
-
-	}
-
 	FadeInAndOut = () => {
 		// this fades in after 100ms
-		this.Wait(100);
+		Wait(100, this);
 
 		// this fades out after 1600ms
-		this.Wait(1600);
+		Wait(1600, this);
 	}
 
 	componentDidMount() {

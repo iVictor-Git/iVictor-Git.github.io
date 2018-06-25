@@ -4,6 +4,8 @@ import styles from './App.css';
 import { Welcome } from './components/Welcome/Welcome';
 import FadeInOut from './components/Animate/FadeInOut';
 
+import AsyncComponent from './hoc/AsyncComponent/AsyncComponent';
+
 class App extends Component {
   constructor() {
     super();
@@ -22,6 +24,7 @@ class App extends Component {
   }
   componentDidMount = () => {
     this.removeWelcome();
+    this.buildResume();
   }
 
   removeWelcome = () => {
@@ -38,21 +41,44 @@ class App extends Component {
   }
 
   buildResume = () => {
+    this.setState((state) => ({
+      resume: {
+        show: !state.resume.show
+      }
+    }))
 
   }
 
 
   render() {
-    console.log(this.state.welcome.show);
     const welcome = (
       <FadeInOut>
         <Welcome />
       </FadeInOut>
     )
+    let Header, FadeIn, data;
+
+    if (this.state.resume.show) {
+      data = ['Victor Tran', 'Victor.N.Tran@outlook.com', '(727) 239-9316'];
+      Header = AsyncComponent(() => import('./components/Resume/Header/Header'));
+      FadeIn = AsyncComponent(() => import('./components/Animate/FadeIn'));
+    }
+
 
     return (
       <div className={styles.App}>
         {this.state.welcome.show ? welcome : null}
+        {this.state.resume.show ? (
+          (
+            <React.Fragment>
+              <Header data={data} />
+              <FadeIn>
+                <hr />
+              </FadeIn>
+            </React.Fragment>
+          )
+        ) : null}
+
       </div>
     );
   }
