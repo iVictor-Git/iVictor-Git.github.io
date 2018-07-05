@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './Animate.css';
-import { setTimeout } from 'timers';
 
 import { Wait } from '../../helper/helper';
 

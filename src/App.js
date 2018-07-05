@@ -71,7 +71,7 @@ class App extends Component {
         {this.state.resume.show ? (
           (
             <React.Fragment>
-              <Header data={data} />
+              <Header data={data} fadeIn={FadeIn} />
               <FadeIn>
                 <hr />
               </FadeIn>
