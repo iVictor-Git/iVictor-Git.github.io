@@ -19,20 +19,21 @@ class Header extends Component {
 		const component = this.LoadInfoComponent();
 		this.setState({ component }, () => {
 			// after component is set in state
-			const Component = this.state.component;
 			if (Component) {
+				const Component = this.state.component;
+				const FadeIn = this.props.fadeIn;
 				// map data into component set
 				const dataSet = this.props.data.map((data, index) => {
-					const delay = (index + 1) * 500;
-					const FadeIn = this.props.fadeIn;
+					const delay = (index + 1) * 300;
 					return (
 						// Info takes data, className as props
 						// FadeIn takes a delay in ms
-						<FadeIn delay={delay} key={index} >
+						<FadeIn delay={delay} key={delay} >
 							<Component className={styles.Info} data={data} />
 						</FadeIn>
 					)
 				})
+
 				this.setState(() => {
 					return { componentList: dataSet };
 				})
@@ -45,6 +46,7 @@ class Header extends Component {
 		return (
 			<div className={styles.Header} >
 				{this.state.componentList}
+
 			</div>
 		)
 	}
