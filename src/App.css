@@ -1,6 +1,14 @@
+body {
+  width: 100vw;
+  background-color: black;
+  overflow: hidden;
+}
+
 .App {
   margin-top: 0;
   background-color: black;
-  width: 100vw;
+  width: 60%;
   height: 100%;
+  margin: 0 auto;
 }
+

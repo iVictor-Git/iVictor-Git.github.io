@@ -5,6 +5,7 @@ import { Welcome } from './components/Welcome/Welcome';
 import FadeInOut from './components/Animate/FadeInOut';
 
 import AsyncComponent from './hoc/AsyncComponent/AsyncComponent';
+import data from './config'
 
 class App extends Component {
   constructor() {
@@ -51,33 +52,37 @@ class App extends Component {
 
 
   render() {
-    const welcome = (
+    const welcome = this.state.welcome.show ? (
       <FadeInOut>
         <Welcome />
       </FadeInOut>
-    )
-    let Header, FadeIn, data;
+    ) : null;
+    let Header, FadeIn, Body, CommandLine;
+    const headerData = data.data;
 
     if (this.state.resume.show) {
-      data = ['Victor Tran', 'Victor.N.Tran@outlook.com', '(727) 239-9316'];
       Header = AsyncComponent(() => import('./components/Resume/Header/Header'));
       FadeIn = AsyncComponent(() => import('./components/Animate/FadeIn'));
+      Body = AsyncComponent(() => import('./components/Resume/Body/Body'));
+      CommandLine = AsyncComponent(() => import('./components/Resume/Body/CommandLine/CommandLine'))
     }
 
+    const resume = this.state.resume.show ? (
+      <React.Fragment>
+        <Header data={headerData} fadeIn={FadeIn} />
+        <FadeIn>
+          <hr />
+        </FadeIn>
+        <Body>
+          <CommandLine></CommandLine>
+        </Body>
+      </React.Fragment>
+    ) : null;
 
     return (
       <div className={styles.App}>
-        {this.state.welcome.show ? welcome : null}
-        {this.state.resume.show ? (
-          (
-            <React.Fragment>
-              <Header data={data} fadeIn={FadeIn} />
-              <FadeIn>
-                <hr />
-              </FadeIn>
-            </React.Fragment>
-          )
-        ) : null}
+        {welcome}
+        {resume}
 
       </div>
     );
